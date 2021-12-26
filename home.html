@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas Calculator</title>
+    <link href="home.css" rel="stylesheet" type="text/css">
+</head>
+<body >
+    <div class="main">
+        
+        
+        <img class="logo" src="logo.png" width="400px">
+        <label class=" in1" for="dp">Introduceti distanta de parcurs(km):</label>
+        <br>
+        <input class=" in"  type="number" id="dp" placeholder="KM de parcurs">
+        <br>
+        <label class=" in1"  for="cm">Indroduceti consumul masinii </label>
+        <br>
+        <input class=" in"  type="number" id="cm" placeholder="Consumul masinii">
+        <br>
+        <form class="tip" > 
+            <label><input type="radio" class="radio3" name="colorCheckbox1" value="Benzina" id="benzina">Benzina</label>
+            <label><input type="radio" class="radio3" name="colorCheckbox1" value="Motorina" id="motorina">Motorina</label>
+            
+        </form>
+        <br>
+        <button class="send "onclick="ready()">Letsgoo!</button>
+        
+            <div  class="res" id="rez" style="display: none;">
+                <div class="litri" style="display:block;">
+                    <h2>Aveti nevoie de: </h2>
+                    <div style="display: flex;">
+                        <h1 id="rezultat"></h1>
+                        <h1>&nbsp;Litri</h1>
+                    </div>
+                </div>
+                <br>
+                
+                <h1>&nbsp;</h1>
+                <div class="pret" style="display:block;">
+                    <h2>Pretul este de: </h2>
+                    <div style="display:flex;">
+                        <h1 id="rezbani"></h1>
+                        <h1>&nbsp;RON</h1>
+                    </div>
+                </div>
+                
+            </div>
+           
+            <script>
+                var snd2 = new Audio("soundfundal.mp3");
+                function beep2(){
+                snd2.play();
+                }   
+                function beep1(){
+                    snd2.pause();
+                }
+
+                
+            </script>
+        <script>
+            function ready(){
+                
+                
+                document.getElementById("rez").style.display="flex";
+                var consum = parseFloat(document.getElementById("cm").value);
+                var distanta = parseFloat(document.getElementById("dp").value);
+
+                var rez = (distanta*consum)/100;
+                console.log(rez);
+
+                document.getElementById("rezultat").innerHTML = rez.toFixed(2);
+                
+                if(document.getElementById("benzina").checked){
+                    var pretBenzina = 6.15;
+                    var benzina= rez * pretBenzina;
+                    document.getElementById("rezbani").innerHTML= benzina.toFixed(2);
+
+                }else if(document.getElementById("motorina").checked){
+                    var pretmotorina = 5.93;
+                    var motorina = rez*pretmotorina;
+                    document.getElementById("rezbani").innerHTML= motorina.toFixed(2);
+                }
+
+
+            }
+        </script>
+    </div>
+    
+    <div class="music">
+        <button class="music1" onclick="beep2()">Music</button>
+        <br>
+        <button class="music2" onclick="beep1()">Mute</button>
+     </div>
+    </body>
+</html>
